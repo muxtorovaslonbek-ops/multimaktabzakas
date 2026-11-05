@@ -93,8 +93,8 @@ function Index() {
               </div>
             </div>
           </div>
-          <div className="absolute left-[46%] top-10 z-10 rounded-xl bg-background px-3 py-2 text-xs font-semibold text-ink shadow-soft">Bugun ingliz tilida<br />5 yangi so‘z o‘rganing!</div>
-          <img src={teacher} alt="Ustoz" width={1024} height={1024} className="absolute bottom-0 left-[56%] h-[230px] w-auto" />
+          <div className="absolute left-[43%] top-10 z-10 rounded-xl bg-background px-3 py-2 text-xs font-semibold text-ink shadow-soft">Bugun ingliz tilida<br />5 yangi so‘z o‘rganing!</div>
+          <img src={teacher} alt="Ustoz" width={1024} height={1024} className="absolute bottom-0 left-[54%] h-[210px] w-auto" />
           <span className="absolute left-[57%] top-4 text-3xl font-bold opacity-80">A</span>
           <span className="absolute left-[71%] top-8 text-3xl font-bold opacity-80">한</span>
           <span className="absolute left-[71%] top-24 text-3xl font-bold opacity-80">文</span>
