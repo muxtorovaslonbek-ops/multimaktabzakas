@@ -142,3 +142,31 @@
     color: var(--color-foreground);
   }
 }
+
+:root {
+  --navy: oklch(0.2 0.08 265);
+  --navy-2: oklch(0.28 0.12 262);
+  --brand: oklch(0.52 0.24 262);
+  --brand-glow: oklch(0.72 0.17 220);
+  --ink: oklch(0.22 0.07 268);
+  --glass: oklch(1 0 0 / 0.6);
+  --page: oklch(0.95 0.02 265);
+  --gradient-hero: linear-gradient(115deg, oklch(0.32 0.18 265), oklch(0.5 0.24 262) 55%, oklch(0.55 0.2 290));
+  --gradient-progress: linear-gradient(90deg, oklch(0.6 0.2 255), oklch(0.85 0.15 175));
+  --shadow-soft: 0 10px 30px -12px oklch(0.4 0.15 265 / 0.25);
+}
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-2: var(--navy-2);
+  --color-brand: var(--brand);
+  --color-brand-glow: var(--brand-glow);
+  --color-ink: var(--ink);
+  --color-glass: var(--glass);
+  --color-page: var(--page);
+  --font-sans: "Nunito", system-ui, sans-serif;
+}
+@utility bg-hero { background: var(--gradient-hero); }
+@utility bg-progress { background: var(--gradient-progress); }
+@utility shadow-soft { box-shadow: var(--shadow-soft); }
+@utility bg-sidebar-grad { background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); }
+@utility bg-app { background: radial-gradient(circle at 70% 0%, oklch(0.93 0.04 260), var(--page) 60%); }
