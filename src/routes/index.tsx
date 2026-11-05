@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Search, Home, Globe, Bot, Users, Award, BookOpen, Settings, ChevronRight, ArrowRight,
   Target, TrendingUp, Moon, Sparkles, Crown, Cpu, Monitor, Calculator, Dumbbell,
@@ -51,9 +51,15 @@ const clubs = [
 function Index() {
   const [active, setActive] = useState(0);
   const [dark, setDark] = useState(false);
+  const [zoom, setZoom] = useState(1);
+  useEffect(() => {
+    const f = () => setZoom(Math.min(window.innerWidth / 1280, 1.5));
+    f(); window.addEventListener("resize", f);
+    return () => window.removeEventListener("resize", f);
+  }, []);
   return (
-    <div className="flex min-h-screen bg-app font-sans text-ink">
-      <aside className="sticky top-0 flex h-screen w-[150px] lg:w-[175px] overflow-hidden shrink-0 flex-col items-center bg-sidebar-grad px-2 py-6 text-primary-foreground rounded-r-2xl">
+    <div className="flex min-h-screen w-[1280px] bg-app font-sans text-ink" style={{ zoom, minHeight: `${100 / zoom}vh` }}>
+      <aside className="sticky top-0 flex min-h-[720px]  w-[175px] overflow-hidden shrink-0 flex-col items-center bg-sidebar-grad px-2 py-6 text-primary-foreground rounded-r-2xl">
         <img src={logo} alt="Logo" width={816} height={816} className="h-20 w-20 animate-floaty drop-shadow-[0_0_18px_oklch(0.7_0.2_240/.6)]" />
         <p className="mt-3 text-center text-lg font-semibold leading-tight">Navoiy shahar<br />8-maktab</p>
         <nav className="mt-8 w-full space-y-2">
@@ -72,7 +78,7 @@ function Index() {
         </button>
       </aside>
 
-      <main className="min-w-0 flex-1 space-y-3 p-4 lg:p-5">
+      <main className="min-w-0 flex-1 space-y-3 p-5">
         <div className="flex w-full max-w-[420px] animate-rise items-center gap-3 rounded-2xl glass-card transition focus-within:ring-2 focus-within:ring-brand px-4 py-2.5 shadow-soft">
           <Search className="h-5 w-5" />
           <input placeholder="Til, dars yoki mavzuni qidirish..." className="w-full bg-transparent text-sm outline-none placeholder:text-ink/70" />
@@ -80,24 +86,24 @@ function Index() {
 
         <section className="relative flex h-[200px] animate-rise items-center overflow-hidden rounded-2xl bg-hero px-8 text-primary-foreground shadow-soft">
           <div className="z-10">
-            <h1 className="text-3xl lg:text-4xl font-extrabold">Salom, o‘quvchilar! <span className="inline-block animate-[floaty_1.5s_ease-in-out_infinite]">👋</span></h1>
+            <h1 className="text-4xl font-extrabold">Salom, o‘quvchilar! <span className="inline-block animate-[floaty_1.5s_ease-in-out_infinite]">👋</span></h1>
             <p className="mt-1">Yangi bilimlar sari bir qadam oldinda!</p>
             <div className="mt-4 flex items-center gap-4">
               <div className="relative h-20 w-20 rounded-full p-1.5" style={{ background: "conic-gradient(var(--brand-glow) 92%, oklch(1 0 0 / .2) 0)" }}>
                 <div className="flex h-full w-full items-center justify-center rounded-full bg-navy-2 text-xl font-bold">92<span className="text-xs">%</span></div>
               </div>
-              <div className="w-56 lg:w-64 rounded-xl bg-primary-foreground/10 backdrop-blur p-3">
+              <div className="w-64 rounded-xl bg-primary-foreground/10 backdrop-blur p-3">
                 <div className="flex justify-between text-sm"><span>Umumiy o‘zlashtirish</span><span className="flex items-center text-emerald-300"><TrendingUp className="h-4 w-4" />+5%</span></div>
                 <div className="mt-2 h-2 rounded-full bg-primary-foreground/20"><div className="h-full w-[80%] animate-grow rounded-full bg-progress" /></div>
               </div>
             </div>
           </div>
-          <div className="absolute left-[40%] top-10 z-20 hidden xl:block animate-floaty rounded-xl bg-background px-3 py-2 text-xs font-semibold text-ink shadow-soft">Bugun ingliz tilida<br />5 yangi so‘z o‘rganing!</div>
-          <img src={teacher} alt="Ustoz" width={1024} height={1024} className="absolute bottom-0 left-[47%] xl:left-[52%] h-[210px] w-auto animate-rise [animation-delay:.3s]" />
+          <div className="absolute left-[40%] top-10 z-20 animate-floaty rounded-xl bg-background px-3 py-2 text-xs font-semibold text-ink shadow-soft">Bugun ingliz tilida<br />5 yangi so‘z o‘rganing!</div>
+          <img src={teacher} alt="Ustoz" width={1024} height={1024} className="absolute bottom-0 left-[52%] h-[210px] w-auto animate-rise [animation-delay:.3s]" />
           <span className="absolute left-[58%] top-4 text-3xl font-bold opacity-80 animate-floaty">A</span>
           <span className="absolute left-[69%] top-8 text-3xl font-bold opacity-80 animate-floaty [animation-delay:1s]">한</span>
           <span className="absolute left-[69%] top-24 text-3xl font-bold opacity-80 animate-floaty [animation-delay:2s]">文</span>
-          <div className="absolute right-4 z-10 h-[150px] w-[240px] lg:w-[280px] rounded-2xl glass-card p-4 text-ink">
+          <div className="absolute right-4 z-10 h-[150px] w-[280px] rounded-2xl glass-card p-4 text-ink">
             <p className="flex items-center gap-2 text-sm"><Target className="h-5 w-5 text-red-500" />Kunlik maqsad</p>
             <p className="mt-3 text-2xl font-bold">5 ta dars</p>
             <div className="mt-3 flex items-center gap-2 text-xs font-semibold"><div className="h-2 w-28 rounded-full bg-muted"><div className="h-full w-[60%] animate-grow rounded-full bg-progress" /></div>3 / 5</div>
@@ -105,10 +111,10 @@ function Index() {
           </div>
         </section>
 
-        <div className="grid grid-cols-[1fr_220px] lg:grid-cols-[1fr_240px] gap-3">
+        <div className="grid grid-cols-[1fr_240px] gap-3">
           <section className="rounded-2xl glass-card p-4 animate-rise [animation-delay:.15s]">
             <h2 className="flex items-center gap-2 text-xl font-extrabold"><Globe className="h-6 w-6" />9 ta Xorijiy Til</h2>
-            <div className="mt-3 grid grid-cols-4 lg:grid-cols-5 gap-3">
+            <div className="mt-3 grid grid-cols-5 gap-3">
               {langs.map((l, i) => (
                 <button key={l.code} className={`${l.bg} group shine flex h-[88px] animate-rise flex-col justify-between rounded-xl border border-background p-3 text-left transition duration-300 hover:-translate-y-1 hover:shadow-soft`} style={{ animationDelay: `${0.2 + i * 0.06}s` }}>
                   <img src={`https://flagcdn.com/w80/${l.code}.png`} alt="" className="h-7 w-10 rounded-sm object-cover shadow transition group-hover:scale-110" />
@@ -127,7 +133,7 @@ function Index() {
           </section>
         </div>
 
-        <div className="grid grid-cols-[1fr_260px] lg:grid-cols-[1fr_320px] gap-3">
+        <div className="grid grid-cols-[1fr_320px] gap-3">
           <section className="flex gap-3 rounded-2xl glass-card p-4 animate-rise [animation-delay:.15s]">
             <div className="flex-1">
               <h2 className="flex items-center gap-2 text-lg font-extrabold"><Users className="h-6 w-6 text-orange-500" />To‘garaklar</h2>
@@ -140,7 +146,7 @@ function Index() {
                 ))}
               </div>
             </div>
-            <div className="relative w-[200px] lg:w-[280px] shrink-0 overflow-hidden rounded-xl">
+            <div className="relative w-[280px] shrink-0 overflow-hidden rounded-xl">
               <img src={students} alt="O‘quvchilar" loading="lazy" width={1088} height={608} className="h-full w-full object-cover transition duration-700 hover:scale-110" />
               <button className="absolute bottom-2 right-2 flex items-center gap-1 rounded-lg bg-background px-3 py-1.5 text-sm font-semibold">Barchasi <ArrowRight className="h-4 w-4" /></button>
             </div>
@@ -149,7 +155,7 @@ function Index() {
             <h2 className="flex items-center gap-2 font-extrabold"><Crown className="h-5 w-5 text-yellow-500" />Faol kutubxona</h2>
             <p className="mt-2 w-44 text-sm">Darsliklar, qo‘llanmalar va foydali materiallar</p>
             <button className="mt-3 flex items-center gap-2 rounded-lg bg-background px-4 py-1.5 text-sm font-semibold shadow-soft">O‘tish <ArrowRight className="h-4 w-4" /></button>
-            <img src={books} alt="" loading="lazy" width={1024} height={1024} className="absolute bottom-0 right-0 h-28 w-28 lg:h-32 lg:w-32 animate-floaty" />
+            <img src={books} alt="" loading="lazy" width={1024} height={1024} className="absolute bottom-0 right-0 h-32 w-32 animate-floaty" />
           </section>
         </div>
       </main>
