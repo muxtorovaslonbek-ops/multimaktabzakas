@@ -111,7 +111,7 @@ function Index() {
             <h2 className="flex items-center gap-2 text-xl font-extrabold"><Globe className="h-6 w-6" />9 ta Xorijiy Til</h2>
             <div className="mt-3 grid grid-cols-5 gap-3">
               {langs.map((l) => (
-                <button key={l.code} className={`${l.bg} flex h-[88px] flex-col justify-between rounded-xl border border-background p-3 text-left transition hover:-translate-y-0.5 hover:shadow-soft`}>
+                <button key={l.code} className={`${l.bg} group shine flex h-[88px] animate-rise flex-col justify-between rounded-xl border border-background p-3 text-left transition duration-300 hover:-translate-y-1 hover:shadow-soft`} style={{ animationDelay: `${0.2 + i * 0.06}s` }}>
                   <img src={`https://flagcdn.com/w80/${l.code}.png`} alt="" className="h-7 w-10 rounded-sm object-cover" />
                   <span className="flex items-center justify-between text-sm font-semibold">{l.name}
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background shadow-soft"><ChevronRight className="h-4 w-4" /></span>
