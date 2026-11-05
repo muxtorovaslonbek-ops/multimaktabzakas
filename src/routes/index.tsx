@@ -62,6 +62,8 @@ function Index() {
   return (
     <>
     {intro && <Intro onClose={() => setIntro(false)} />}
+    <span className="bg-blob left-[30%] top-[10%] h-72 w-72 bg-brand" />
+    <span className="bg-blob right-[5%] bottom-[5%] h-80 w-80 bg-brand-glow [animation-delay:-5s]" />
     <div className="flex min-h-screen w-[1280px] bg-app font-sans text-ink" style={{ zoom, minHeight: `${100 / zoom}vh` }}>
       <aside className="sticky top-0 flex min-h-[720px]  w-[175px] overflow-hidden shrink-0 flex-col items-center bg-sidebar-grad px-2 py-6 text-primary-foreground rounded-r-2xl">
         <img src={logo} alt="Logo" width={816} height={816} className="h-20 w-20 animate-floaty drop-shadow-[0_0_18px_oklch(0.7_0.2_240/.6)]" />
@@ -74,6 +76,9 @@ function Index() {
             </button>
           ))}
         </nav>
+        <button onClick={() => setIntro(true)} className="shine mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-3 py-2.5 text-sm font-bold shadow-soft animate-pulse-glow transition hover:scale-105">
+          <Sparkles className="h-5 w-5" />Intro kirish
+        </button>
         <button onClick={() => setDark(!dark)} className="mt-8 flex items-center gap-1 rounded-full bg-navy px-2 py-1">
           <Moon className="h-4 w-4 text-yellow-400" />
           <span className={`h-5 w-9 rounded-full bg-primary-foreground/90 p-0.5 transition`}>
@@ -82,13 +87,13 @@ function Index() {
         </button>
       </aside>
 
-      <main className="min-w-0 flex-1 space-y-3 p-5">
+      <main className="relative z-10 min-w-0 flex-1 space-y-3 p-5">
         <div className="flex w-full max-w-[420px] animate-rise items-center gap-3 rounded-2xl glass-card transition focus-within:ring-2 focus-within:ring-brand px-4 py-2.5 shadow-soft">
           <Search className="h-5 w-5" />
           <input placeholder="Til, dars yoki mavzuni qidirish..." className="w-full bg-transparent text-sm outline-none placeholder:text-ink/70" />
         </div>
 
-        <section className="relative flex h-[200px] animate-rise items-center overflow-hidden rounded-2xl bg-hero px-8 text-primary-foreground shadow-soft">
+        <section className="relative flex h-[200px] animate-rise items-center overflow-hidden rounded-2xl hero-anim px-8 text-primary-foreground shadow-soft">
           <div className="z-10">
             <h1 className="text-4xl font-extrabold">Salom, o‘quvchilar! <span className="inline-block animate-[floaty_1.5s_ease-in-out_infinite]">👋</span></h1>
             <p className="mt-1">Yangi bilimlar sari bir qadam oldinda!</p>
