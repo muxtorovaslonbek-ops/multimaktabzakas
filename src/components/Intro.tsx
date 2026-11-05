@@ -94,7 +94,7 @@ export function Intro({ onClose }: { onClose: () => void }) {
         )}
       </div>
 
-      <img src={teacher} alt="" className={`intro-teacher absolute bottom-0 right-10 h-[60vh] ${stage >= 2 ? "in" : ""}`} />
+      <img src={teacher} alt="" className={`intro-teacher absolute bottom-0 right-2 h-[42vh] ${stage >= 2 ? "in" : ""}`} />
 
       <button onClick={onClose} className="absolute right-6 top-6 z-20 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm backdrop-blur hover:bg-primary-foreground/20">
         O‘tkazib yuborish ✕
