@@ -10,6 +10,7 @@ import books from "@/assets/books.png";
 import chat from "@/assets/chat.png";
 import gift from "@/assets/gift.png";
 import logo from "@/assets/logo.png";
+import { Intro } from "@/components/Intro";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -52,12 +53,15 @@ function Index() {
   const [active, setActive] = useState(0);
   const [dark, setDark] = useState(false);
   const [zoom, setZoom] = useState(1);
+  const [intro, setIntro] = useState(false);
   useEffect(() => {
     const f = () => setZoom(Math.min(window.innerWidth / 1280, 1.5));
     f(); window.addEventListener("resize", f);
     return () => window.removeEventListener("resize", f);
   }, []);
   return (
+    <>
+    {intro && <Intro onClose={() => setIntro(false)} />}
     <div className="flex min-h-screen w-[1280px] bg-app font-sans text-ink" style={{ zoom, minHeight: `${100 / zoom}vh` }}>
       <aside className="sticky top-0 flex min-h-[720px]  w-[175px] overflow-hidden shrink-0 flex-col items-center bg-sidebar-grad px-2 py-6 text-primary-foreground rounded-r-2xl">
         <img src={logo} alt="Logo" width={816} height={816} className="h-20 w-20 animate-floaty drop-shadow-[0_0_18px_oklch(0.7_0.2_240/.6)]" />
@@ -129,7 +133,7 @@ function Index() {
             <h2 className="flex items-center gap-2 text-xl font-extrabold"><Sparkles className="h-7 w-7 text-brand-glow" />AI Suhbat</h2>
             <p className="mt-3 text-sm font-semibold">Istalgan tilda jonli<br />suhbat qiling!</p>
             <img src={chat} alt="" loading="lazy" width={1024} height={1024} className="ml-auto h-32 w-32 animate-floaty" />
-            <button className="mt-2 flex w-full items-center justify-center gap-2 shine animate-pulse-glow rounded-xl bg-brand py-2.5 font-semibold text-primary-foreground transition hover:scale-[1.02]">Boshlash <ArrowRight className="h-4 w-4" /></button>
+            <button onClick={() => setIntro(true)} className="mt-2 flex w-full items-center justify-center gap-2 shine animate-pulse-glow rounded-xl bg-brand py-2.5 font-semibold text-primary-foreground transition hover:scale-[1.02]">Boshlash <ArrowRight className="h-4 w-4" /></button>
           </section>
         </div>
 
@@ -160,5 +164,6 @@ function Index() {
         </div>
       </main>
     </div>
+    </>
   );
 }
