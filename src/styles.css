@@ -170,3 +170,24 @@
 @utility shadow-soft { box-shadow: var(--shadow-soft); }
 @utility bg-sidebar-grad { background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); }
 @utility bg-app { background: radial-gradient(circle at 70% 0%, oklch(0.93 0.04 260), var(--page) 60%); }
+
+@keyframes floaty { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+@keyframes rise { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: none } }
+@keyframes shine { from { transform: translateX(-120%) skewX(-20deg) } to { transform: translateX(260%) skewX(-20deg) } }
+@keyframes grow { from { width: 0 } }
+@keyframes pulse-glow { 0%,100% { box-shadow: 0 0 0 0 oklch(0.6 0.22 262 / .5) } 50% { box-shadow: 0 0 0 10px oklch(0.6 0.22 262 / 0) } }
+@utility animate-floaty { animation: floaty 4s ease-in-out infinite; }
+@utility animate-rise { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
+@utility animate-grow { animation: grow 1.6s cubic-bezier(.2,.8,.2,1) both; }
+@utility animate-pulse-glow { animation: pulse-glow 2.2s infinite; }
+@utility glass-card {
+  background: linear-gradient(145deg, oklch(1 0 0 / .75), oklch(1 0 0 / .45));
+  backdrop-filter: blur(16px);
+  border: 1px solid oklch(1 0 0 / .8);
+  box-shadow: var(--shadow-soft);
+}
+@utility shine {
+  position: relative; overflow: hidden;
+  &::after { content: ""; position: absolute; inset: 0; width: 40%; background: linear-gradient(90deg, transparent, oklch(1 0 0 / .35), transparent); transform: translateX(-120%); }
+  &:hover::after { animation: shine .9s ease; }
+}
