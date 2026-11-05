@@ -1,23 +1,159 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import {
+  Search, Home, Globe, Bot, Users, Award, BookOpen, Settings, ChevronRight, ArrowRight,
+  Target, TrendingUp, Moon, Sparkles, Crown, Gift, Cpu, Monitor, Calculator, Dumbbell,
+} from "lucide-react";
+import teacher from "@/assets/teacher.png";
+import students from "@/assets/students.jpg";
+import books from "@/assets/books.png";
+import chat from "@/assets/chat.png";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Bosh sahifa — Navoiy shahar 8-maktab" },
+      { name: "description", content: "9 ta xorijiy til, AI ustoz, to‘garaklar va kutubxona — Navoiy shahar 8-maktab platformasi." },
+      { property: "og:title", content: "Navoiy shahar 8-maktab" },
+      { property: "og:description", content: "Tillar, AI suhbat, to‘garaklar va kutubxona bir joyda." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const nav = [
+  { icon: Home, label: "Bosh sahifa" }, { icon: Globe, label: "Tillar" }, { icon: Bot, label: "AI Ustoz" },
+  { icon: Users, label: "To‘garaklar" }, { icon: Award, label: "Sertifikatlar" },
+  { icon: BookOpen, label: "Kutubxona" }, { icon: Settings, label: "Sozlamalar" },
+];
+
+const langs = [
+  { name: "Ingliz tili", code: "gb", bg: "bg-indigo-100/70" },
+  { name: "Rus tili", code: "ru", bg: "bg-sky-100/70" },
+  { name: "Koreys tili", code: "kr", bg: "bg-cyan-100/70" },
+  { name: "Nemis tili", code: "de", bg: "bg-orange-100/70" },
+  { name: "Turk tili", code: "tr", bg: "bg-indigo-100/70" },
+  { name: "Fransuz tili", code: "fr", bg: "bg-blue-100/70" },
+  { name: "Arab tili", code: "sa", bg: "bg-emerald-100/70" },
+  { name: "Xitoy tili", code: "cn", bg: "bg-rose-100/70" },
+  { name: "Yapon tili", code: "jp", bg: "bg-slate-100/70" },
+];
+
+const clubs = [
+  { icon: Cpu, label: "Robototexnika", c: "text-blue-600" },
+  { icon: Monitor, label: "IT Club", c: "text-cyan-600" },
+  { icon: Calculator, label: "Matematika", c: "text-emerald-600" },
+  { icon: Dumbbell, label: "Sport", c: "text-orange-500" },
+];
+
 function Index() {
+  const [active, setActive] = useState(0);
+  const [dark, setDark] = useState(false);
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="flex min-h-screen bg-app font-sans text-ink">
+      <aside className="sticky top-0 flex h-screen w-[175px] shrink-0 flex-col items-center bg-sidebar-grad px-2 py-6 text-primary-foreground rounded-r-2xl">
+        <div className="flex h-16 w-20 items-center justify-center">
+          <Globe className="h-10 w-10 text-brand-glow" />
+          <BookOpen className="-ml-6 mt-6 h-9 w-9 text-brand-glow" />
+        </div>
+        <p className="mt-3 text-center text-lg font-semibold leading-tight">Navoiy shahar<br />8-maktab</p>
+        <nav className="mt-8 w-full space-y-2">
+          {nav.map((n, i) => (
+            <button key={n.label} onClick={() => setActive(i)}
+              className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition ${active === i ? "bg-brand shadow-soft font-semibold" : "hover:bg-primary-foreground/10"}`}>
+              <n.icon className="h-5 w-5" />{n.label}
+            </button>
+          ))}
+        </nav>
+        <button onClick={() => setDark(!dark)} className="mt-8 flex items-center gap-1 rounded-full bg-navy px-2 py-1">
+          <Moon className="h-4 w-4 text-yellow-400" />
+          <span className={`h-5 w-9 rounded-full bg-primary-foreground/90 p-0.5 transition`}>
+            <span className={`block h-4 w-4 rounded-full bg-brand transition ${dark ? "translate-x-4" : ""}`} />
+          </span>
+        </button>
+      </aside>
+
+      <main className="flex-1 space-y-3 p-5">
+        <div className="flex w-[420px] items-center gap-3 rounded-2xl bg-glass px-4 py-2.5 shadow-soft">
+          <Search className="h-5 w-5" />
+          <input placeholder="Til, dars yoki mavzuni qidirish..." className="w-full bg-transparent text-sm outline-none placeholder:text-ink/70" />
+        </div>
+
+        <section className="relative flex h-[200px] items-center overflow-hidden rounded-2xl bg-hero px-8 text-primary-foreground shadow-soft">
+          <div className="z-10">
+            <h1 className="text-4xl font-extrabold">Salom, o‘quvchilar! 👋</h1>
+            <p className="mt-1">Yangi bilimlar sari bir qadam oldinda!</p>
+            <div className="mt-4 flex items-center gap-4">
+              <div className="relative h-20 w-20 rounded-full p-1.5" style={{ background: "conic-gradient(var(--brand-glow) 92%, oklch(1 0 0 / .2) 0)" }}>
+                <div className="flex h-full w-full items-center justify-center rounded-full bg-navy-2 text-xl font-bold">92<span className="text-xs">%</span></div>
+              </div>
+              <div className="w-64 rounded-xl bg-primary-foreground/10 p-3">
+                <div className="flex justify-between text-sm"><span>Umumiy o‘zlashtirish</span><span className="flex items-center text-emerald-300"><TrendingUp className="h-4 w-4" />+5%</span></div>
+                <div className="mt-2 h-2 rounded-full bg-primary-foreground/20"><div className="h-full w-[80%] rounded-full bg-progress" /></div>
+              </div>
+            </div>
+          </div>
+          <div className="absolute left-[43%] top-10 z-10 rounded-xl bg-background px-3 py-2 text-xs font-semibold text-ink shadow-soft">Bugun ingliz tilida<br />5 yangi so‘z o‘rganing!</div>
+          <img src={teacher} alt="Ustoz" width={1024} height={1024} className="absolute bottom-0 left-[54%] h-[210px] w-auto" />
+          <span className="absolute left-[57%] top-4 text-3xl font-bold opacity-80">A</span>
+          <span className="absolute left-[71%] top-8 text-3xl font-bold opacity-80">한</span>
+          <span className="absolute left-[71%] top-24 text-3xl font-bold opacity-80">文</span>
+          <div className="absolute right-4 z-10 h-[150px] w-[280px] rounded-2xl bg-background/90 p-4 text-ink">
+            <p className="flex items-center gap-2 text-sm"><Target className="h-5 w-5 text-red-500" />Kunlik maqsad</p>
+            <p className="mt-3 text-2xl font-bold">5 ta dars</p>
+            <div className="mt-3 flex items-center gap-2 text-xs font-semibold"><div className="h-2 w-28 rounded-full bg-muted"><div className="h-full w-[60%] rounded-full bg-progress" /></div>3 / 5</div>
+            <Gift className="absolute bottom-6 right-4 h-16 w-16 text-brand" />
+          </div>
+        </section>
+
+        <div className="grid grid-cols-[1fr_240px] gap-3">
+          <section className="rounded-2xl bg-glass p-4 shadow-soft">
+            <h2 className="flex items-center gap-2 text-xl font-extrabold"><Globe className="h-6 w-6" />9 ta Xorijiy Til</h2>
+            <div className="mt-3 grid grid-cols-5 gap-3">
+              {langs.map((l) => (
+                <button key={l.code} className={`${l.bg} flex h-[88px] flex-col justify-between rounded-xl border border-background p-3 text-left transition hover:-translate-y-0.5 hover:shadow-soft`}>
+                  <img src={`https://flagcdn.com/w80/${l.code}.png`} alt="" className="h-7 w-10 rounded-sm object-cover" />
+                  <span className="flex items-center justify-between text-sm font-semibold">{l.name}
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background shadow-soft"><ChevronRight className="h-4 w-4" /></span>
+                  </span>
+                </button>
+              ))}
+            </div>
+          </section>
+          <section className="relative overflow-hidden rounded-2xl bg-glass p-4 shadow-soft">
+            <h2 className="flex items-center gap-2 text-xl font-extrabold"><Sparkles className="h-7 w-7 text-brand-glow" />AI Suhbat</h2>
+            <p className="mt-3 text-sm font-semibold">Istalgan tilda jonli<br />suhbat qiling!</p>
+            <img src={chat} alt="" loading="lazy" width={1024} height={1024} className="ml-auto h-32 w-32" />
+            <button className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-brand py-2.5 font-semibold text-primary-foreground hover:opacity-90">Boshlash <ArrowRight className="h-4 w-4" /></button>
+          </section>
+        </div>
+
+        <div className="grid grid-cols-[1fr_320px] gap-3">
+          <section className="flex gap-3 rounded-2xl bg-glass p-4 shadow-soft">
+            <div className="flex-1">
+              <h2 className="flex items-center gap-2 text-lg font-extrabold"><Users className="h-6 w-6 text-orange-500" />To‘garaklar</h2>
+              <p className="ml-8 text-sm">Maktab to‘garaklariga yoziling!</p>
+              <div className="mt-3 grid grid-cols-4 gap-2">
+                {clubs.map((c) => (
+                  <button key={c.label} className="flex flex-col items-center gap-1 rounded-xl bg-background/60 py-2 text-xs font-semibold hover:shadow-soft">
+                    <c.icon className={`h-7 w-7 ${c.c}`} />{c.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="relative w-[280px] overflow-hidden rounded-xl">
+              <img src={students} alt="O‘quvchilar" loading="lazy" width={1088} height={608} className="h-full w-full object-cover" />
+              <button className="absolute bottom-2 right-2 flex items-center gap-1 rounded-lg bg-background px-3 py-1.5 text-sm font-semibold">Barchasi <ArrowRight className="h-4 w-4" /></button>
+            </div>
+          </section>
+          <section className="relative overflow-hidden rounded-2xl bg-glass p-4 shadow-soft">
+            <h2 className="flex items-center gap-2 font-extrabold"><Crown className="h-5 w-5 text-yellow-500" />Faol kutubxona</h2>
+            <p className="mt-2 w-44 text-sm">Darsliklar, qo‘llanmalar va foydali materiallar</p>
+            <button className="mt-3 flex items-center gap-2 rounded-lg bg-background px-4 py-1.5 text-sm font-semibold shadow-soft">O‘tish <ArrowRight className="h-4 w-4" /></button>
+            <img src={books} alt="" loading="lazy" width={1024} height={1024} className="absolute bottom-0 right-0 h-32 w-32" />
+          </section>
+        </div>
+      </main>
     </div>
   );
 }
